@@ -239,6 +239,7 @@ main{
     letter-spacing: 0.1rem;
     transition: background-color 0.2s ease;
     -webkit-transition: background-color 0.2s ease;
+    z-index: 99;
 }
 
 .resume-2:hover {
