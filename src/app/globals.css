@@ -1,78 +1,231 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-
-  /* Brand Accents */
-  --color-brand-teal: #0d9488;
-  --color-brand-rose: #e11d48;
-
-  --color-accent: var(--color-brand-teal);
-  --color-accent-secondary: var(--color-brand-rose);
-  --color-accent-foreground: #ffffff;
-
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #444;
-}
-
-
 :root {
-  --background: 0 0% 3.9%;
-  --foreground: 0 0% 93%;
+  --background: #faf7f2;
+  --text: #1a1a1a;
+  --muted: #666666;
+  --rule: #e8e0d6;
+  --link: #3b5bdb;
+  --link-visited: #5365b8;
 }
 
-@layer base {
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.68;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--background);
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 120ms ease;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+a:hover {
+  color: var(--text);
+}
+
+p,
+h1,
+h2,
+h3,
+ul {
+  margin: 0;
+}
+
+.page-shell {
+  max-width: 640px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 34px 20px 56px;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.top-nav a,
+.top-nav a:visited {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.top-nav a:hover {
+  color: var(--text);
+}
+
+.hero {
+  margin-top: 74px;
+}
+
+.hero-with-photo {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.hero-photo {
+  width: 88px;
+  height: 88px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.hero p {
+  margin-top: 0.25rem;
+  color: var(--muted);
+}
+
+.section {
+  margin-top: 68px;
+}
+
+.first-section {
+  margin-top: 76px;
+}
+
+.compact {
+  margin-top: 52px;
+}
+
+.section p + p {
+  margin-top: 1.25rem;
+}
+
+.section h2 {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.plain-list {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.plain-list span {
+  color: var(--muted);
+}
+
+.label {
+  font-weight: 600;
+}
+
+.footer {
+  margin-top: 78px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.essay-list {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.essay-entry {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1rem;
+}
+
+.essay-date {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.essay-entry h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.essay-entry p:not(.essay-date) {
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.contact-lines p + p {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 520px) {
   body {
-    @apply bg-background text-foreground antialiased selection:bg-[var(--color-brand-teal)] selection:text-white bg-[size:20px_20px];
-    background-image: radial-gradient(#262626 1px, transparent 1px);
+    font-size: 17px;
   }
-}
 
-/* Technical / Editorial Utilities */
+  .page-shell {
+    padding: 26px 18px 44px;
+  }
 
-.container-narrow {
-  @apply max-w-7xl mx-auto border-x border-dashed border-neutral-800 min-h-screen bg-background relative;
-}
+  .hero {
+    margin-top: 58px;
+  }
 
-.dashed-separator {
-  @apply border-b border-dashed border-neutral-800 w-full my-8;
-}
+  .hero-with-photo {
+    gap: 0.9rem;
+  }
 
-.tech-card {
-  @apply border border-dashed border-neutral-800 p-6 transition-all hover:bg-[var(--color-brand-teal)]/10 hover:border-[var(--color-brand-teal)];
-}
+  .hero-photo {
+    width: 72px;
+    height: 72px;
+  }
 
-.heading-serif {
-  @apply font-serif italic tracking-tight;
-}
+  .section,
+  .first-section {
+    margin-top: 54px;
+  }
 
-.text-mono {
-  @apply font-mono text-xs uppercase tracking-wider text-[var(--color-brand-teal)];
-}
+  .compact {
+    margin-top: 42px;
+  }
 
-.btn-tech {
-  @apply border border-neutral-700 px-6 py-2 font-mono text-xs uppercase tracking-widest hover:bg-[var(--color-brand-teal)] hover:border-[var(--color-brand-teal)] hover:text-white transition-colors text-white;
+  .essay-entry {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
 }
