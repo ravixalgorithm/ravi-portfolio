@@ -6,7 +6,5 @@ Routes:
 
 - `/`
 - `/writing`
-- `/now`
-- `/contact`
 
 Shared copy and link data lives in `src/data/site.ts`.
