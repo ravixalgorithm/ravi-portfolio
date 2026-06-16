@@ -18,7 +18,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               I am <span className="site-hero-name-core">Ravi</span>
             </span>
             <Image
-              src="/ravi-profile.png"
+              src="/ravi-profile.jpeg"
               alt="Ravi Pratap Singh"
               width={94}
               height={116}
